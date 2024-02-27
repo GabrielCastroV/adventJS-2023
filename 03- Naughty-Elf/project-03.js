@@ -18,14 +18,7 @@ function findNaughtyStep(original, modified) {
             if (!(refModified === refOrifinal)) return newOriginal[i]
         }
     }
-    if (newOriginal.length < newModified.length) {
-        for (let i = 0; i < newModified.length; i++) {
-            const refOrifinal = newOriginal[i];
-            const refModified = newModified[i];
-            if (!(refModified === refOrifinal)) return newModified[i]
-        }
-    }
-    if (newOriginal.length === newModified.length) {
+    if (newOriginal.length <= newModified.length) {
         for (let i = 0; i < newModified.length; i++) {
             const refOrifinal = newOriginal[i];
             const refModified = newModified[i];

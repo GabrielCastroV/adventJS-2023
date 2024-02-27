@@ -9,17 +9,15 @@
 //respuesta:
 
 function findFirstRepeated(gifts) {
-    const newsGifts = [...gifts]
     let repeated = []
-    let rightAns = []
     for (let index = 0; index < gifts.length; index++) {
       const element = gifts[index];
-      if (!(newsGifts.indexOf(element) === newsGifts.lastIndexOf(element))) {
-       if (repeated.includes(element)) rightAns.push(element)
-        repeated.push(element);
+      if (!(gifts.indexOf(element) === gifts.lastIndexOf(element))) {
+       if (repeated.includes(element)) return element
+       repeated.push(element);
       }
     }
-    return rightAns[0] ?? -1
+    return -1
   }
  
- console.log('respuesta ' + findFirstRepeated([1, 3, 4, 5, 0, 3, 1, 0, 7]));
+ console.log('respuesta ' + findFirstRepeated([1, 3, 7, 3, 7]));
