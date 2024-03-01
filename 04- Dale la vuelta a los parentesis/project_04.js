@@ -19,51 +19,24 @@
 
 // Respuesta:
 
-function decode(message) {
-    const newTxt = message
-    const splitted = newTxt?.split(' ')
-    let ans = newTxt;
-    const reverse = () => {
-        let lastOpened = ans.lastIndexOf('(')
-        let firstClosed = ans.indexOf(')')
-        const badString = Array(ans).join('').slice(lastOpened + 1, firstClosed);
-        const rightString = badString.split('').reverse().join('');  
-
-        ans = ans.replace(badString, rightString).split('');
-
-        // elimino los parentesis
-        ans.splice(firstClosed, 1)
-        ans.splice(lastOpened, 1)
-        ans = ans.join('')
-    }
-
-    if (splitted.length > 120) {
-        console.log('tiene mas de una palabra');
-        
-        for (let i = 0; i < splitted.length; i++) {
-            const element = splitted[i];
-            while (element.includes('(')) {
-                reverse()
-                console.log('ciclando pa');
-                if (!element.includes('(')) {
-                    ans.push(ans)
-                }
-            }
-        }
-        return box
-    }
-    while (ans.includes('(') && ans.includes(')')) {
-      reverse()
-      console.log('asdoooo ciclando');
-      if (!ans.includes('(')) return ans
-    }
-    return 'nada'
-}
 const txt = 'sa(u(cla)atn)s'
 
 const txtTwo = 'c(oi(el(z(i))ac)mara)n'
 
-const textThree = '(aloh)'
+const textThree = '(aloh) jojo (odnum) c(oi(el(z(i))ac)mara)n'
 
-console.log('palabra original: ' + textThree);
-console.log(decode(textThree))
+function decode(message) {
+   const hasParenthesis = message.match(/\(([^()]+)\)/);
+   
+   if (!hasParenthesis) return message
+
+   const rightWord = hasParenthesis[0].split('').slice(1,-1).reverse().join('');
+   const newMessage = message.replace(hasParenthesis[0], rightWord);
+
+   const result = decode(newMessage)
+   return result
+}
+
+
+// Decodificar el texto y mostrar el resultado
+console.log(decode('(oh)(al)'))
